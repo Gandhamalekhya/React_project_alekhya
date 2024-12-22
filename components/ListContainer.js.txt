@@ -1,0 +1,18 @@
+// src/components/ListContainer.js
+import React from 'react';
+
+const ListContainer = ({ items, onMoveRight, onMoveLeft }) => {
+    return (
+        <div>
+            {items.map(item => (
+                <div key={item.id} style={{ display: 'flex', alignItems: 'center' }}>
+                    <span>{item.title}</span>
+                    <button onClick={() => onMoveRight(item)}>→</button>
+                    <button onClick={() => onMoveLeft(item)}>←</button>
+                </div>
+            ))}
+        </div>
+    );
+};
+
+export default ListContainer;

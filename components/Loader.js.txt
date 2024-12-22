@@ -1,0 +1,8 @@
+// src/components/Loader.js
+import React from 'react';
+
+const Loader = () => {
+    return <div>Loading...</div>; // You can style this as needed
+};
+
+export default Loader;

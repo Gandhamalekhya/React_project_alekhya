@@ -1,0 +1,46 @@
+// src/components/ListCreation.js
+import React from 'react';
+import ListContainer from './ListContainer';
+
+const ListCreation = ({ list1, list2, onUpdate, onCancel }) => {
+    const [newList, setNewList] = React.useState([]);
+
+    const moveToNewList = (item, fromList) => {
+        if (fromList === 'list1') {
+            setNewList((prev) => [...prev, item]);
+        } else if (fromList === 'list2') {
+            setNewList((prev) => [...prev, item]);
+        } else {
+            // Logic to move item back to list1 or list2
+            setNewList((prev) => prev.filter(i => i.id !== item.id));
+        }
+    };
+
+    return (
+        <div>
+            <h2>List Creation</h2>
+            <h3>List 1</h3>
+            <ListContainer
+                items={list1}
+                onMoveRight={(item) => moveToNewList(item, 'list1')}
+                onMoveLeft={() => {}}
+            />
+            <h3>New List</h3>
+            <ListContainer
+                items={newList}
+                onMoveRight={(item) => moveToNewList(item, 'newList')}
+                onMoveLeft={(item) => moveToNewList(item, 'newList')}
+            />
+            <h3>List 2</h3>
+            <ListContainer
+                items={list2}
+                onMoveRight={(item) => moveToNewList(item, 'list2')}
+                onMoveLeft={() => {}}
+            />
+            <button onClick={onCancel}>Cancel</button>
+            <button onClick={onUpdate}>Update</button>
+        </div>
+    );
+};
+
+export default ListCreation;
